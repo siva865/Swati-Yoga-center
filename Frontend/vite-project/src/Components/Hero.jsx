@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HiX } from 'react-icons/hi';
-import bgImage from '../assets/yoga-background.jpeg';
+import bgImage from '../assets/Yoga.jpeg';
 
 const Home = () => {
   const [showMore, setShowMore] = useState(false);
