@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HiX } from 'react-icons/hi';
-import homeBackground from '../assets/yoga-background.jpeg';
+import bgImage from '../assets/yoga-background.jpeg';
 
 const Home = () => {
   const [showMore, setShowMore] = useState(false);
@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <section 
       className="home" 
-      style={{ backgroundImage: `linear-gradient(rgba(211, 198, 182, 0.7), rgba(196, 163, 128, 0.7)), url(${homeBackground})` }}
+      style={{ backgroundImage: `linear-gradient(rgba(211, 198, 182, 0.7), rgba(196, 163, 128, 0.7)), url(${bgImage})` }}
       id="home"
     >
       <div className="home-content">
