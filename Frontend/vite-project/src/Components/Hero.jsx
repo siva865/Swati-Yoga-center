@@ -14,8 +14,8 @@ const Home = () => {
       <div className="home-content">
         <div className="text-container">
           <h1>Find Balance with Swati</h1>
-          <p className="subtitle">Certified Yoga Trainer based in London</p>
-          <p className="description">Helping you achieve mental peace and physical wellness through personalized yoga sessions</p>
+          <p className="subtitle">Traditional yoga teacher</p>
+          <p className="description">Helping you live with ease and calm one day at a time</p>
           
           <div className="btn-group">
             <a href="#classes" className="btn primary">

@@ -31,7 +31,7 @@ const ContactForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          to: 'siranjeevisabapathi@gmail.com',
+          to: 'swati19391@gmail.com',
           subject: 'New Contact Form Submission',
         }),
       });

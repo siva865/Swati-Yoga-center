@@ -8,8 +8,7 @@ const Footer = () => {
         <div className="footer-column">
           <h3>Swati Sharma Yoga</h3>
           <p>
-            Empowering your body, mind, and soul through the ancient practice of yoga.
-            Join online and in-person classes designed for wellness, balance, and inner peace.
+           Connecting body, mind, and soul through the ancient techniques of yoga. Join online classes now
           </p>
         </div>
 
@@ -28,7 +27,7 @@ const Footer = () => {
           <h4>Get in Touch</h4>
           <p>Email: <a href="mailto:swati19391@gmail.com">swati19391@gmail.com</a></p>
           <p>Phone: +44 7447 850496</p>
-          <p>Location: London, UK</p>
+          <p>Location: UK</p>
 
           <div className="social-links">
             <a href="mailto:swati19391@gmail.com"><i className="fas fa-envelope"></i></a>

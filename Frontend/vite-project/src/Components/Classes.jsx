@@ -6,7 +6,7 @@ const Classes = () => {
 
   const handleCountryChange = (e) => {
     setCountry(e.target.value);
-    setForms({}); // reset all forms on country switch
+    setForms({});
   };
 
   const handleInputChange = (type, field, value) => {
@@ -34,57 +34,82 @@ const Classes = () => {
     window.open(`https://wa.me/447447850496?text=${encoded}`, '_blank');
   };
 
-  const renderClassCard = (type, title, schedule, priceKey) => (
-    <div className="class-card">
-      <h3>{title}</h3>
-      {schedule && <div className="schedule">{schedule}</div>}
-      <p className="price" style={{ fontWeight: 'bold', color: country ? '#2c3e50' : '#888' }}>
-        {country ? priceKey : 'Select country to view pricing'}
+  const sharedStyles = {
+    card: {
+      background: 'white',
+      borderRadius: '15px',
+      padding: '25px',
+      boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
+      marginBottom: '30px'
+    },
+    title: {
+      fontSize: '22px',
+      fontWeight: '600',
+      color: '#2c3e50',
+      marginBottom: '10px'
+    },
+    sectionTitle: {
+      fontSize: '26px',
+      textAlign: 'center',
+      fontWeight: 'bold',
+      marginBottom: '30px',
+      color: '#8F501B'
+    },
+    label: {
+      fontWeight: 'bold'
+    },
+    input: {
+      width: '100%',
+      padding: '10px',
+      border: '1px solid #ccc',
+      borderRadius: '6px',
+      fontSize: '14px',
+      marginBottom: '12px'
+    },
+    button: {
+      width: '100%',
+      padding: '12px',
+      backgroundColor: '#25D366',
+      color: 'white',
+      border: 'none',
+      borderRadius: '6px',
+      fontWeight: 'bold',
+      fontSize: '15px',
+      cursor: 'pointer'
+    }
+  };
+
+  const renderClassCard = (type, title, descLines, schedule, price) => (
+    <div style={sharedStyles.card}>
+      <h3 style={sharedStyles.title}>{title}</h3>
+      <div style={{ marginBottom: '10px' }}>
+        {descLines.map((line, idx) => (
+          <p key={idx} style={{ margin: '5px 0', color: '#444' }}>{line}</p>
+        ))}
+      </div>
+      <div style={{ fontSize: '14px', color: '#666', marginBottom: '10px' }}>
+        {schedule}
+      </div>
+      <p style={{ fontWeight: 'bold', marginBottom: '12px' }}>
+        {country ? price : 'Select country to view pricing'}
       </p>
       {country && (
-        <div className="form" style={{ marginTop: '15px' }}>
+        <div>
           <input
             type="text"
             placeholder="Your Name"
             value={forms[type]?.name || ''}
             onChange={(e) => handleInputChange(type, 'name', e.target.value)}
-            style={{
-              width: '100%',
-              padding: '8px',
-              marginBottom: '10px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-              fontSize: '14px'
-            }}
+            style={sharedStyles.input}
           />
           <input
             type="email"
             placeholder="Your Email"
             value={forms[type]?.email || ''}
             onChange={(e) => handleInputChange(type, 'email', e.target.value)}
-            style={{
-              width: '100%',
-              padding: '8px',
-              marginBottom: '10px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-              fontSize: '14px'
-            }}
+            style={sharedStyles.input}
           />
-          <button 
-            onClick={() => handleSubmit(type)}
-            style={{
-              width: '100%',
-              padding: '8px 12px',
-              backgroundColor: '#25D366',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: 'bold'
-            }}
-          >
+          <button style={sharedStyles.button} onClick={() => handleSubmit(type)}>
             Join via WhatsApp
           </button>
         </div>
@@ -93,32 +118,26 @@ const Classes = () => {
   );
 
   return (
-    <section className="classes-section" id="classes">
-      <div className="container">
-        <p style={{ 
-          textAlign: 'center', 
-          marginBottom: '20px',
-          color: '#555'
-        }}>
-          Please select your country to view accurate pricing & class schedule
+    <section style={{ padding: '50px 20px', background: '#f9f7f3' }} id="classes">
+      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <h2 style={sharedStyles.sectionTitle}>Explore Our Yoga Classes</h2>
+
+        <p style={{ textAlign: 'center', color: '#666', marginBottom: '20px' }}>
+          Choose your country to view correct pricing & session details.
         </p>
-        <div className="country-selector" style={{
+
+        <div style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          gap: '10px',
-          marginBottom: '20px'
+          gap: '12px',
+          marginBottom: '40px'
         }}>
-          <label style={{ fontWeight: 'bold' }}>Select Country:</label>
-          <select 
-            value={country} 
+          <label style={sharedStyles.label}>Select Country:</label>
+          <select
+            value={country}
             onChange={handleCountryChange}
-            style={{
-              padding: '8px 12px',
-              borderRadius: '4px',
-              border: '1px solid #ddd',
-              fontSize: '14px'
-            }}
+            style={{ padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
           >
             <option value="">-- Choose --</option>
             <option value="india">India 🇮🇳</option>
@@ -126,39 +145,55 @@ const Classes = () => {
           </select>
         </div>
 
-        <div className="cards-wrapper">
-          {renderClassCard(
-            'group',
-            'Group Classes',
-            <>
-              <p><strong>Asanas, Pranayama, Meditation</strong></p>
-              <p>Morning: 6am BST / 10:30am IST</p>
-              <p>Evening: 6pm IST / 1:30pm BST</p>
-              <p>5 days a week</p>
-            </>,
-            country === 'india' ? '₹3500/month' : '£40/month'
-          )}
+        {/* Group Class */}
+        {renderClassCard(
+          'group',
+          'Group Yoga Classes',
+          [
+            "Perfect for all levels — beginner to advanced.",
+            "Focus on flexibility, breath awareness, and inner calm.",
+            "Includes Asanas, Pranayama, Meditation, and Chanting."
+          ],
+          <>
+            <p><strong>Timing:</strong></p>
+            <ul style={{ paddingLeft: '20px' }}>
+              <li>Morning: 6am BST / 10:30am IST</li>
+              <li>Evening: 6pm BST / 1:30pm IST</li>
+              <li>5 days a week</li>
+            </ul>
+          </>,
+          country === 'india' ? '₹3500/month' : '£40/month'
+        )}
 
-          {renderClassCard(
-            'private',
-            '1-on-1 Classes',
-            <>
-              <p>Personalized Yoga Sessions</p>
-              <p>3 days a week</p>
-            </>,
-            country === 'india' ? '₹10000 for 12 sessions' : '£120 for 12 sessions / £15 per session'
-          )}
+        {/* Private Class */}
+        {renderClassCard(
+          'private',
+          '1-on-1 Personalized Yoga',
+          [
+            "Tailored sessions based on your needs and goals.",
+            "Ideal for injury recovery, deeper focus, or flexible timings.",
+            "Includes Meditation, Deep Breathing, and Relaxation."
+          ],
+          <>
+            <p><strong>Schedule:</strong> 3 sessions/week, flexible timing</p>
+          </>,
+          country === 'india' ? '₹10000 for 12 sessions' : '£120 for 12 sessions / £15 per session'
+        )}
 
-          {renderClassCard(
-            'prenatal',
-            'Pre & Post-Natal Yoga',
-            <>
-              <p>Specialized sessions for new and expecting mothers</p>
-              <p>3 days a week</p>
-            </>,
-            country === 'india' ? '₹10000 for 12 sessions' : '£120 for 12 sessions / £15 per session'
-          )}
-        </div>
+        {/* Pre/Post Natal */}
+        {renderClassCard(
+          'prenatal',
+          'Pre & Post-Natal Yoga',
+          [
+            "Safe, guided practices for mothers-to-be and new moms.",
+            "Gentle Asanas and breathwork to support recovery and strength.",
+            "Includes Relaxation, Breathing, and Pelvic floor focus."
+          ],
+          <>
+            <p><strong>Schedule:</strong> 3 sessions/week</p>
+          </>,
+          country === 'india' ? '₹10000 for 12 sessions' : '£120 for 12 sessions / £15 per session'
+        )}
       </div>
     </section>
   );
