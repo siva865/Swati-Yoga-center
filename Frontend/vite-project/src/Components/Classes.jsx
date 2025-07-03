@@ -162,7 +162,7 @@ const Classes = () => {
               <li>5 days a week</li>
             </ul>
           </>,
-          country === 'india' ? '₹3500/month' : '£40/month'
+          country === 'india' ? '₹4000/month' : '£45/month'
         )}
 
         {/* Private Class */}
