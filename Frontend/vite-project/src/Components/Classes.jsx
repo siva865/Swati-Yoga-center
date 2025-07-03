@@ -158,7 +158,7 @@ const Classes = () => {
             <p><strong>Timing:</strong></p>
             <ul style={{ paddingLeft: '20px' }}>
               <li>Morning: 6am BST / 10:30am IST</li>
-              <li>Evening: 6pm BST / 1:30pm IST</li>
+              <li>Evening: 1:30pm BST / 6pm IST</li>
               <li>5 days a week</li>
             </ul>
           </>,
