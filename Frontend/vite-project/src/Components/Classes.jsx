@@ -24,7 +24,7 @@ const Classes = () => {
     if (!data?.name || !data?.email) return;
 
     const priceMap = {
-      group: country === 'india' ? '₹3500/month' : '£40/month',
+      group: country === 'india' ? '₹4000/month' : '£45/month',
       private: country === 'india' ? '₹10000 for 12 sessions' : '£120 for 12 sessions / £15 per session',
       prenatal: country === 'india' ? '₹10000 for 12 sessions' : '£120 for 12 sessions / £15 per session',
     };

@@ -28,7 +28,7 @@ const About = () => {
                Traditional yoga teacher from India
             </p>
             <p className="description">
-              My yoga journey started when I was in primary school. I was labelled a chubby child and was sent to yoga classes to lose wait. But it did more than that it left an imprint so deep that after not practicing yoga for few years while growing up I came back to it in my 20s and decided to study it and finished a one year course from university in India. Since then, I have dedicated my life to practice, study, and teach Hatha yoga.
+              My yoga journey started when I was in primary school. I was labelled a chubby child and was sent to yoga classes to lose weight. But it did more than that it left an imprint so deep that after not practicing yoga for few years while growing up I came back to it in my 20s and decided to study it and finished  one year course from university in India. Since then, I have dedicated my life to practice, study, and teach Hatha yoga.
             </p>
             
             <div className="stats-grid">
